@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--  -->
 <link href="stylesheets/main_style.css" rel="stylesheet"  type="text/css">
-<link href="stylesheets/home.css" rel="stylesheet"  type="text/css">
+<link href="stylesheets/index.css" rel="stylesheet"  type="text/css">
 <link href='http://fonts.googleapis.com/css?family=Lekton' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Molengo' rel='stylesheet' type='text/css'>
 
@@ -16,8 +16,8 @@
         <div id='navigationbar_div'>
           <a href='index'><p class='navigation_element'>NEWS</p></a>
           <a><p class='navigation_element'>TOP</p></a>
-          <form id='search_form'>
-            <input type='text' id='search_editview'>
+          <form id='search_form' action='/search' method="get">
+            <input type='text' id='search_editview' name='search_line'>
             <input type='submit' id='search_submit_button' value=' '>
           </form>
           <a href='login'><p class='navigation_element' id='username_login_frame'>LOGIN</p></a>
@@ -28,14 +28,16 @@
     </div>
 
 
-    <!-- POST EXAMPLE -->
-    <a href="index">
+    <% for (var i = 0; i < posts.length; i++)
+    {%>
+    <a href="<%= posts[i].href %>">
       <div class='post_linear_layout'>
-        <p class='post_name'>SAY HELLO TO ASSASIN'S CREED</p>
-        <img class='post_image' src='images/empty.jpg'></img>
+        <p class='post_name'><%= posts[i].title %></p>
+        <img class='post_image' src='images/<%= posts[i].imagePath %>'></img>
 
       </div>
     </a>
+    <%}%>
 
 
 

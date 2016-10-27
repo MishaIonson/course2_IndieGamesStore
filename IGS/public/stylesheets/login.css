@@ -23,3 +23,7 @@ input.editview{
   border-color: #353431;
   background-color: #959492;
 }
+
+input.editview:focus{
+  border-color: #FFCE2B;
+}

@@ -1,0 +1,27 @@
+#filter_layout{
+  text-align: center;
+  margin-top: 1.5vh;
+}
+
+.filter_button{
+  display: inline-block;
+  border: none;
+  color: #ffffff;
+  background: none;
+
+  font-family: 'Molengo', Georgia, Times, serif;
+  font-size: 1.15em;
+
+  padding-left: 1.5vw;
+  padding-right: 1.5vw;
+  padding-top: 0.75vw;
+  padding-bottom: 0.7vw;
+}
+
+.filter_button:hover{
+  background-color: #6A6862;
+}
+
+.filter_button:focus{
+  background-color: #6A6862;
+}
