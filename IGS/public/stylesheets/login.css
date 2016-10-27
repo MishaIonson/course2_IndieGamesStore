@@ -1,0 +1,25 @@
+form{
+  text-align: center;
+}
+
+input{
+  margin-top: 2vh;
+  font-family: 'Lekton', Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 25px;
+  color: #000000;
+}
+
+input.button{
+  border: none;
+  background-color: #42413D;
+}
+
+input.button:hover{
+  background-color: #6A6862;
+}
+
+input.editview{
+  border-color: #353431;
+  background-color: #959492;
+}

@@ -1,0 +1,88 @@
+a { color: inherit; text-decoration:none}
+
+body{
+  background-color: #42413D;
+}
+
+.cf:after { visibility:hidden; display:block; content:"" ; clear:both; height:0px;}
+#navigationbar_div{
+    float: right;
+    color: #ffffff;
+}
+
+.navigation_element{
+  margin-left: 0.5vw;
+  margin-right: 0.5vw;
+  padding-left: 2vw;
+  padding-right: 2vw;
+  padding-top: 1vw;
+  padding-bottom: 1vw;
+  display: inline-block;
+  font-family: 'Molengo', Georgia, Times, serif;
+  font-size: 1.7em;
+}
+
+.navigation_element:hover{
+  background-color: #6A6862;
+}
+
+#search_form{
+  margin-left: 0.5vw;
+  margin-right: 0.5vw;
+  padding-left: 2vw;
+  padding-right: 2vw;
+  padding-top: 1vw;
+  padding-bottom: 1vw;
+  display: inline-block;
+  font-family: 'Molengo', Georgia, Times, serif;
+  font-size: 1.7em;
+}
+
+#search_editview{
+  width: 10vw;
+  font-size: 0.7em;
+  background-color: #504e49;
+  border-color: #353431;
+}
+
+#search_submit_button{
+  background-image: url("../images/search.png");
+  background-color: #42413D;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  border: none;
+  width: 2vw;
+  height: 2vw;
+  text-align: center;
+}
+
+#search_submit_button:hover{
+  background-color: #6A6862;
+}
+
+#toolbar_bottom_line{
+  background-color: #FFCE2B;
+  height: 1.4vh;
+}
+
+#footer_line{
+  background-color: #FFCE2B;
+  height: 0.5vh;
+}
+
+#footer_text{
+  margin-right: 2.3vw;
+}
+
+footer{
+  position:fixed;
+  left:0px;
+  bottom:0px;
+  height:8vh;
+  width:100%;
+  color: #ffffff;
+  font-family: 'Molengo', Georgia, Times, serif;
+  text-align: right;
+  background-color: #42413D;
+}
