@@ -4,7 +4,6 @@ var router = express.Router();
 
 router.get('/', function(req, res, next) {
 
-  // @TODO: use the same blank for search and top
   res.render('top');
 });
 

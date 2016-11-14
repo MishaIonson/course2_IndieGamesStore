@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <!--  -->
 <link href="stylesheets/main_style.css" rel="stylesheet"  type="text/css">
-<link href="stylesheets/login.css" rel="stylesheet"  type="text/css">
+<link href="stylesheets/games.css" rel="stylesheet"  type="text/css">
 <link href='http://fonts.googleapis.com/css?family=Lekton' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Molengo' rel='stylesheet' type='text/css'>
 
 <html>
 <head>
-  <title>IGS - LOGIN</title>
+  <title>IGS - NEWS</title>
 </head>
   <body>
     <div id='toolbar_div'>
@@ -27,15 +27,23 @@
       <div id='toolbar_bottom_line'> </div>
     </div>
 
-    <div id='content'>
-      <form>
-        <input class='editview' name="email" type='email' placeholder="email"><br>
-        <input class='editview' name="password" type='password' placeholder="password"><br>
-        <input class='button' type='submit' value='OK'>
-        <a href='sign_up'><input class='button' type='button' value='SIGN UP'></a>
-      </form>
+    <div id='game_body_div'>
+      <div id='game_image_div'>
+        <img src="<%=game.imagePath%>"></img>
+      </div>
+
+      <div id='header_div'>
+        <p id='game_name'><%=game.name%></p>
+        <p id='game_rating'><%=game.rating%></p>
+      </div>
+
+      <p id='game_description'><%=game.description%></p>
+
     </div>
 
+    <div id='comments_body'>
+
+    </div>
 
     <footer>
       <div id='footer_line'> </div>

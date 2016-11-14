@@ -2,6 +2,7 @@
 <!--  -->
 <link href="stylesheets/main_style.css" rel="stylesheet"  type="text/css">
 <link href="stylesheets/search.css" rel="stylesheet"  type="text/css">
+<link href="stylesheets/feed_content.css" rel="stylesheet"  type="text/css">
 <link href='http://fonts.googleapis.com/css?family=Lekton' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Molengo' rel='stylesheet' type='text/css'>
 
@@ -28,11 +29,27 @@
     </div>
 
     <div id='filter_layout'>
-      <button class="filter_button">GAMES</button>
+      <a href="/games">
+        <button class="filter_button">GAMES</button>
+      </a>
       <button class="filter_button">DEVELOPERS</button>
-      <button class="filter_button">ARTICLES</button>
     </div>
 
+
+    <% for (var i = 0; i < feed_posts.length; i++)
+    {%>
+    <a href="<%= feed_posts[i].href %>">
+      <div class='feed_div_layout'>
+        <div class='post_image_div'>
+          <img class='post_image' src='images/<%= feed_posts[i].imagePath %>'></img>
+        </div>
+        <div class='feed_post_text_layout'>
+          <p class='feed_post_title'><%=feed_posts[i].title%></p>
+          <p class='feed_post_description'><%=feed_posts[i].description%></p>
+        </div>
+      </div>
+    </a>
+    <%}%>
 
 
     <footer>
