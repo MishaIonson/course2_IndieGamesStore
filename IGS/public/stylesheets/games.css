@@ -16,10 +16,37 @@
 #game_image{
 }
 
+#game_price{
+  display: inline-block;
+  float: left;
+  margin-left: 10%;
+  font-family: 'Molengo', Georgia, Times, serif;
+  color: #ffffff;
+  font-size: 1.4em;
+  padding-top: 2%;
+}
+
 #game_name{
   display: inline-block;
+  font-family: 'Molengo', Georgia, Times, serif;
+  font-size: 2.5em;
+  color: #ffffff;
+  font-weight: bold;
 }
 
 #game_rating{
   display: inline-block;
+  float: right;
+  margin-right: 10%;
+  font-family: 'Molengo', Georgia, Times, serif;
+  color: #FFCE2B;
+  font-size: 1.4em;
+  padding-top: 2%;
+}
+
+#game_description{
+  font-family: 'Lekton', Helvetica, Arial, sans-serif;
+  color: #ffffff;
+  margin-left: 20%;
+  margin-right: 20%;
 }

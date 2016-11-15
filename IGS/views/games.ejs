@@ -7,7 +7,7 @@
 
 <html>
 <head>
-  <title>IGS - NEWS</title>
+  <title>IGS - <%=game.name%></title>
 </head>
   <body>
     <div id='toolbar_div'>
@@ -29,10 +29,11 @@
 
     <div id='game_body_div'>
       <div id='game_image_div'>
-        <img src="<%=game.imagePath%>"></img>
+        <img src="images/<%=game.imagePath%>"></img>
       </div>
 
       <div id='header_div'>
+        <p id='game_price'><%=game.price%>$</p>
         <p id='game_name'><%=game.name%></p>
         <p id='game_rating'><%=game.rating%></p>
       </div>
