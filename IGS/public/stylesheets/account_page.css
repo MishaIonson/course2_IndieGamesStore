@@ -1,0 +1,14 @@
+.description{
+  font-family: 'Lekton', Helvetica, Arial, sans-serif;
+  color: #ffffff;
+}
+
+#avatar{
+  width: 15%;
+  height: 15%;
+}
+
+
+#content{
+  margin-top: 3%;
+}

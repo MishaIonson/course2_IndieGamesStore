@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var app = express();
 
 // ROUTES
 var routes = require('./routes/index');
@@ -12,6 +13,7 @@ var sign_up = require('./routes/sign_up');
 var search = require('./routes/search');
 var top = require('./routes/top');
 var gamesPage = require('./routes/games');
+var account_page = require('./routes/account_page');
 
 var app = express();
 
@@ -34,6 +36,7 @@ app.use('/sign_up', sign_up);
 app.use('/search', search);
 app.use('/top', top);
 app.use('/games', gamesPage);
+app.use('/account_page', account_page);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
