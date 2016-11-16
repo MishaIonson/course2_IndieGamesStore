@@ -18,7 +18,7 @@ router.get('/*', function(req, res, next) {
         name: games[0].name,
         rating: games[0].rating,
         description: games[0].description,
-        imagePath: "empty.jpg" /*@TODO*/
+        imagePath: games[0].name + ".png"
       }
 
       res.render('games', {game});
