@@ -113,9 +113,6 @@ body{
   background-color: #6A6862;
 }
 
-
-
-
 footer{
   position:fixed;
   left:0px;
@@ -126,4 +123,5 @@ footer{
   font-family: 'Molengo', Georgia, Times, serif;
   text-align: right;
   background-color: #42413D;
+  visibility: hidden; /*@TODO: delete*/
 }

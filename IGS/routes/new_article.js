@@ -11,9 +11,17 @@ router.post('/', function(req, res, next){
 
   var newArticle = new Article({
     title: req.body.title,
-    picture_url: 'empty.jpg', /*@TODO*/
     description: req.body.description
   });
+
+  if (req.files)
+  {
+    var picture = req.files.picture;
+    picture.mv('./public/images/articles/' + newArticle.title + ".png", function(err){
+      if (err)
+        res.status(500).send(err);
+    });
+  }
 
   Article.addArticle(newArticle, function(err, article){
     if (err){

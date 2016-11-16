@@ -30,11 +30,8 @@
 
     <div id='content'>
       <form method="post" enctype="multipart/form-data">
-        <img id='avatar' src="images/<%=account.avatarPath%>"></img><br>
-        <input class='editview' type="file" name="picture">
-        <input class='button' type='submit' value='UPLOAD (png)'>
-      </form>
-      <form method="post">
+        <img id='avatar' src="images/users/<%=account.avatarPath%>"></img><br>
+        <input class='editview' type="file" name="picture" accept='image/png'><br>
         <input class='editview' name="name" type='text' placeholder="name" value='<%=account.name%>'><br>
         <input class='editview' name="email" type='email' placeholder="email" value='<%=account.email%>'><br>
         <p class='description'>Enter password to confirm changes</p>

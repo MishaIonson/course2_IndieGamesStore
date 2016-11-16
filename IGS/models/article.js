@@ -5,10 +5,6 @@ var articleSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  picture_url:{
-    type: String,
-    required: true
-  },
   description:{
     type: String,
     required: true

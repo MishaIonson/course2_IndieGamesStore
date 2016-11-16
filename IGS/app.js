@@ -5,6 +5,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var fileUpload = require('express-fileupload');
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/igs_db');
 var app = express();
@@ -28,7 +29,7 @@ var account_page = require('./routes/account_page');
 var new_article = require('./routes/new_article');
 var api = require('./routes/api');
 
-var app = express();
+// var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -41,6 +42,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(fileUpload());
 
 app.use('/', routes);
 app.use('/index', routes);
