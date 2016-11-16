@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
 
   var posts = [];
 
-  Article.getAricles(function(err, articles){
+  Article.getArticles(function(err, articles){
     if (err)
     {
       res.render('error');
@@ -24,7 +24,7 @@ router.get('/', function(req, res, next) {
       res.render('index', {posts: posts});
     }
   });
-  
+
 });
 
 module.exports = router;

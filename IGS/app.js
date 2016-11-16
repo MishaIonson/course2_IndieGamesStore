@@ -1,4 +1,5 @@
 var express = require('express');
+var redirect = require("express-redirect");
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -12,6 +13,8 @@ db.on('error', console.error);
 db.once('open', function() {
   // Create your schemas and models here.
 });
+
+redirect(app);
 
 // ROUTES
 var routes = require('./routes/index');

@@ -18,11 +18,7 @@ router.post('/', function(req, res, next){
       description: ""
     });
 
-    console.log("Indicator:--------------");
-    console.log(newAccount.name);
-
     User.addUser(newAccount, function(err, user){
-      console.log("it is here");
         if(err)
           throw err;
 
