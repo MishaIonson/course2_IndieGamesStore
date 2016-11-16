@@ -25,9 +25,9 @@ var User = module.exports = mongoose.model('User',userSchema);
 
 module.exports.getUsers = function(callback,limit) {
    User.find(callback).limit(limit);
-
 }
-module.exports.addUser = function(user,callback,limit) {
-
-
+module.exports.addUser = function(user,callback) {
+  console.log('comes here');
+  user.save(callback);
+  console.log('here two');
 }

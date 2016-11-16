@@ -1,23 +1,30 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
+Article = require('../models/article');
+
 router.get('/', function(req, res, next) {
 
   var posts = [];
 
-  // @TODO: put useful data
-  for (var i = 0; i < 10; i++)
-  {
-    posts.push({
-      href: "index",
-      title: "ASSASIN'S CREED",
-      imagePath: "empty.jpg"
-    });
-  }
-
-
-  res.render('index', {posts: posts});
+  Article.getAricles(function(err, articles){
+    if (err)
+    {
+      res.render('error');
+    }
+    else {
+      for (var i = 0; i < articles.length; i++)
+      {
+        posts.push({
+          href: "index",/*@TODO: change to articles full page*/
+          title: articles[i].title,
+          imagePath: articles[i].picture_url
+        });
+      }
+      res.render('index', {posts: posts});
+    }
+  });
+  
 });
 
 module.exports = router;

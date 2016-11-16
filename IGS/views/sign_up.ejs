@@ -28,11 +28,11 @@
     </div>
 
     <div id='content'>
-      <form>
-        <input class='editview' name="name" type='text' placeholder="name"><br>
-        <input class='editview' name="email" type='text' placeholder="email"><br>
-        <input class='editview' name="password" type='password' placeholder="password"><br>
-        <input class='editview' name="confirmed_password" type='password' placeholder="confirm password"><br>
+      <form method='post'>
+        <input class='editview' name="name" type='text' placeholder="name" required><br>
+        <input class='editview' name="email" type='email' placeholder="email" required><br>
+        <input class='editview' name="password" type='password' placeholder="password" required><br>
+        <input class='editview' name="confirmed_password" type='password' placeholder="confirm password" required><br>
         <input class='button' type='submit' value='OK'>
         <a href='login'><input class='button' type='button' value='LOGN IN'></a>
       </form>

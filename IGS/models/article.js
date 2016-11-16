@@ -13,13 +13,12 @@ var articleSchema = mongoose.Schema({
     type: String,
     required: true
   }
-}, {collection: 'articles'}));
+}, {collection: 'articles'});
 
 var Article = module.exports = mongoose.model('Article',articleSchema);
 
-module.exports.getAricle = function(callback,limit) {
+module.exports.getAricles = function(callback,limit) {
    Article.find(callback).limit(limit);
-
 }
 module.exports.addAricle = function(article,callback,limit) {
 
