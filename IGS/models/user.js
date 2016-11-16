@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var bcrypt = require('bcryptjs');
 
 var userSchema = mongoose.Schema({
   name:{
@@ -27,7 +28,10 @@ module.exports.getUsers = function(callback,limit) {
    User.find(callback).limit(limit);
 }
 module.exports.addUser = function(user,callback) {
-  console.log('comes here');
-  user.save(callback);
-  console.log('here two');
+  const saltRounds = 10;
+
+  bcrypt.hash(user.password, saltRounds, function(err, hashPassword){
+    user.password = hashPassword;
+    user.save(callback);
+  });
 }
