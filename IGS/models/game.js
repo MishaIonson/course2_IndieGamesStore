@@ -5,11 +5,15 @@ var gameSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  rating{
+  rating:{
     type: String,
     required: true
   },
-  developer_name{
+  price:{
+    type: Number,
+    required: true
+  },
+  developer_name:{
     type: String,
     required: true
   },
@@ -17,16 +21,16 @@ var gameSchema = mongoose.Schema({
     type: String,
     required: true
   }
-}, {collection: 'games'}));
+}, {collection: 'games'});
 
 
 var Game = module.exports = mongoose.model('Game', gameSchema);
 
-module.exports.getGame = function(callback,limit) {
-   Game.find(callback).limit(limit);
+module.exports.getGames = function(callback) {
+   Game.find(callback);
 
 }
-module.exports.addGame = function(game,callback,limit) {
 
-
+module.exports.getGame = function(nameInput, callback){
+  Game.find({"name": nameInput}, callback);
 }

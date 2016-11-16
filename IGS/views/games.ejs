@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--  -->
-<link href="stylesheets/main_style.css" rel="stylesheet"  type="text/css">
-<link href="stylesheets/games.css" rel="stylesheet"  type="text/css">
+<link href="../stylesheets/main_style.css" rel="stylesheet"  type="text/css">
+<link href="../stylesheets/games.css" rel="stylesheet"  type="text/css">
 <link href='http://fonts.googleapis.com/css?family=Lekton' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Molengo' rel='stylesheet' type='text/css'>
 
@@ -14,13 +14,13 @@
 
       <div class="cf">
         <div id='navigationbar_div'>
-          <a href='index'><p class='navigation_element'>NEWS</p></a>
-          <a href='top'><p class='navigation_element'>TOP</p></a>
+          <a href='../index'><p class='navigation_element'>NEWS</p></a>
+          <a href='../top'><p class='navigation_element'>TOP</p></a>
           <form id='search_form' action='/search' method="get">
             <input type='text' id='search_editview' name='search_line'>
             <input type='submit' id='search_submit_button' value=' '>
           </form>
-          <a href='login'><p class='navigation_element' id='username_login_frame'>LOGIN</p></a>
+          <a href='../login'><p class='navigation_element' id='username_login_frame'>LOGIN</p></a>
         </div>
       </div>
 
@@ -29,7 +29,7 @@
 
     <div id='game_body_div'>
       <div id='game_image_div'>
-        <img src="images/<%=game.imagePath%>"></img>
+        <img src="../images/<%=game.imagePath%>"></img>
       </div>
 
       <div id='header_div'>
