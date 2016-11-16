@@ -13,8 +13,21 @@ var userSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  avatar:{
-    type: String,
+  games_names_list: [String],
+  user_type:{
+    type: Number,
     required: true
-  }
-});
+  },
+  description: String
+}, {collection: 'users'});
+
+var User = module.exports = mongoose.model('User',userSchema);
+
+module.exports.getUsers = function(callback,limit) {
+   User.find(callback).limit(limit);
+
+}
+module.exports.addUser = function(user,callback,limit) {
+
+
+}

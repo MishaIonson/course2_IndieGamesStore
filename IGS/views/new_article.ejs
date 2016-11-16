@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--  -->
+<link href="stylesheets/main_style.css" rel="stylesheet"  type="text/css">
+<link href="stylesheets/login.css" rel="stylesheet"  type="text/css">
+<link href="stylesheets/account_page.css" rel="stylesheet"  type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Lekton' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Molengo' rel='stylesheet' type='text/css'>
+
+<html>
+<head>
+  <title>IGS - NEW ARTICLE</title>
+</head>
+  <body>
+    <div id='toolbar_div'>
+
+      <div class="cf">
+        <div id='navigationbar_div'>
+          <a href='index'><p class='navigation_element'>NEWS</p></a>
+          <a href='top'><p class='navigation_element'>TOP</p></a>
+          <form id='search_form' action='/search' method="get">
+            <input type='text' id='search_editview' name='search_line'>
+            <input type='submit' id='search_submit_button' value=' '>
+          </form>
+          <a href='login'><p class='navigation_element' id='username_login_frame'>LOGIN</p></a>
+        </div>
+      </div>
+
+      <div id='toolbar_bottom_line'> </div>
+    </div>
+
+    <div id='content'>
+      <form method="post" enctype="multipart/form-data">
+        <p class='description'>Set header image</p>
+        <input class='editview' type="file" name="picture">
+        <input class='button' type='submit' value='UPLOAD (png)'>
+      </form>
+      <form method="post">
+        <input class='editview' name="title" type='text' placeholder="Title"><br>
+        <textarea class='editview'  name="description" cols="50" rows="10"></textarea><br>
+        <input class='button' type='submit' value='SAVE'>
+      </form>
+    </div>
+
+    <footer>
+      <div id='footer_line'> </div>
+     <p id='footer_text'>Mykhailo Ivanov, 2016</p>
+    </footer>
+  </body>
+
+</html>

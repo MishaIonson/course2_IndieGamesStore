@@ -4,8 +4,14 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/igs_db');
 var app = express();
-
+var db = mongoose.connection;
+db.on('error', console.error);
+db.once('open', function() {
+  // Create your schemas and models here.
+});
 
 // ROUTES
 var routes = require('./routes/index');
@@ -15,6 +21,7 @@ var search = require('./routes/search');
 var top = require('./routes/top');
 var gamesPage = require('./routes/games');
 var account_page = require('./routes/account_page');
+var new_article = require('./routes/new_article');
 var api = require('./routes/api');
 
 var app = express();
@@ -39,6 +46,7 @@ app.use('/search', search);
 app.use('/top', top);
 app.use('/games', gamesPage);
 app.use('/account_page', account_page);
+app.use('/new_article', new_article);
 app.use('/api', api);
 
 // catch 404 and forward to error handler
