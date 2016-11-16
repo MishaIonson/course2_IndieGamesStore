@@ -28,7 +28,6 @@ var Game = module.exports = mongoose.model('Game', gameSchema);
 
 module.exports.getGames = function(callback) {
    Game.find(callback);
-
 }
 
 module.exports.getGame = function(nameInput, callback){

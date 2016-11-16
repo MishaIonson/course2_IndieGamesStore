@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
       for (var i = 0; i < articles.length; i++)
       {
         posts.push({
-          href: "index",/*@TODO: change to articles full page*/
+          href: "/articles/" + articles[i].title,/*@TODO: change to articles full page*/
           title: articles[i].title,
           imagePath: articles[i].picture_url
         });

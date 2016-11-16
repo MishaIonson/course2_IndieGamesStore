@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
       for (var i = 0; i < games.length; i++)
       {
         feed_posts.push({
-          href: "games/" + games[i].name,/*@TODO: change to game full page*/
+          href: "games/" + games[i].name,
           imagePath: "empty.jpg", /*@TODO: games[i].name + ".png"*/
           title: games[i].name,
           description: games[i].description
