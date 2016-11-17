@@ -20,7 +20,13 @@
             <input type='text' id='search_editview' name='search_line'>
             <input type='submit' id='search_submit_button' value=' '>
           </form>
-          <a href='login'><p class='navigation_element' id='username_login_frame'>LOGIN</p></a>
+          <!-- session stuff -->
+          <%if (user == null){%>
+            <a href='login'><p class='navigation_element'>LOGIN</p></a>
+          <%}else{%>
+            <a href='logout'><p class='navigation_element'>LOGOUT</p></a>
+          <%}%>
+          <!-- -->
         </div>
       </div>
 

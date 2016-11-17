@@ -27,6 +27,23 @@ var User = module.exports = mongoose.model('User',userSchema);
 module.exports.getUsers = function(callback,limit) {
    User.find(callback).limit(limit);
 }
+
+module.exports.getUserById = function(id, callback){
+  User.findById(id, callback);
+}
+
+module.exports.getUserByEmail = function(email, callback){
+  User.findOne({"email": email}, callback);
+}
+
+module.exports.comparePassword = function(accountPassword_hash, formPassword, callback){
+  bcrypt.compare(formPassword, accountPassword_hash, function(err, res) {
+    if (err){throw err;}
+
+    callback(null, res);
+});
+}
+
 module.exports.addUser = function(user,callback) {
   const saltRounds = 10;
 

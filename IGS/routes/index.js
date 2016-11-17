@@ -6,7 +6,6 @@ Article = require('../models/article');
 router.get('/', function(req, res, next) {
 
   var posts = [];
-
   Article.getArticles(function(err, articles){
     if (err)
     {

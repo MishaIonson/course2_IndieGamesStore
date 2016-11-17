@@ -17,9 +17,50 @@ db.once('open', function() {
 
 redirect(app);
 
+// passport & session stuff
+var passport = require('passport');
+var session = require('express-session');
+var LocalStrategy = require('passport-local').Strategy;
+var expressValidator = require("express-validator");
+var flash = require("connect-flash");
+
+app.use(session({
+  secret: 'awesomesecret',
+  saveUninitialized: true,
+  resave: true
+}));
+
+app.use(expressValidator({
+  errorFormatter: function(param, msg, value) {
+      var namespace = param.split('.')
+      , root    = namespace.shift()
+      , formParam = root;
+
+    while(namespace.length) {
+      formParam += '[' + namespace.shift() + ']';
+    }
+    return {
+      param : formParam,
+      msg   : msg,
+      value : value
+    };
+  }
+}));
+
+app.use(flash());
+app.use(function (req, res, next){
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
+  res.locals.user = req.user || null;
+  next();
+});
+//
+
 // ROUTES
 var routes = require('./routes/index');
 var login = require('./routes/login');
+var logout = require('./routes/logout');
 var sign_up = require('./routes/sign_up');
 var search = require('./routes/search');
 var top = require('./routes/top');
@@ -29,7 +70,6 @@ var account_page = require('./routes/account_page');
 var new_article = require('./routes/new_article');
 var api = require('./routes/api');
 
-// var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -47,6 +87,7 @@ app.use(fileUpload());
 app.use('/', routes);
 app.use('/index', routes);
 app.use('/login', login);
+app.use('/logout', logout);
 app.use('/sign_up', sign_up);
 app.use('/search', search);
 app.use('/top', top);

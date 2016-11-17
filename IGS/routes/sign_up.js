@@ -21,7 +21,7 @@ router.post('/', function(req, res, next){
     User.addUser(newAccount, function(err, user){
         if(err)
           throw err;
-
+          
         res.redirect('login');
       });
   }
