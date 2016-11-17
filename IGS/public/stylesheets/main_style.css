@@ -113,6 +113,21 @@ body{
   background-color: #6A6862;
 }
 
+#add_button_img{
+  position: fixed;
+  right:0px;
+  bottom:0px;
+  height:15vh;
+  margin-bottom: 2vh;
+  margin-right: 2vh;
+  opacity: 0.7;
+}
+
+#add_button_img:hover{
+  opacity: 1.0;
+  transition: 1s;
+}
+
 footer{
   position:fixed;
   left:0px;

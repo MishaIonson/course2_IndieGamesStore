@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
+//@TODO: fix bad: because of name as path for image, in case of name changing images will be lost
+
 var User = require('../models/user');
 
 router.get('/', ensureAuthenticated, function(req, res) {
