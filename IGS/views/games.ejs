@@ -45,6 +45,30 @@
         <p id='game_rating'><%=game.rating%></p>
       </div>
 
+      <%
+        if ((user != null) && (user.user_type == 1))
+        {
+          var bought = false;
+          for (var i = 0; i < user.games_names_list.length; i++)
+          {
+            if (user.games_names_list[i] == game.name)
+            {
+              %>
+              <p id='havebought_info'>BOUGHT</p>
+              <%
+              bought = true;
+              break;
+            }
+          }
+          if (!bought){
+          %>
+          <form method='post'>
+            <input type='submit' id='buy_info' value='BUY!'/>
+          </form>
+          <%}
+        }
+      %>
+
       <p id='game_description'><%=game.description%></p>
 
     </div>

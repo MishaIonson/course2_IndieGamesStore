@@ -44,6 +44,20 @@ module.exports.getGamesByQuery = function(queryInput, callback){
   });
 }
 
+module.exports.containsGame = function(name, callback){
+  var q = {name: name};
+  Game.findOne(q, function(err, game){
+    if (err){throw err;}
+
+    if (game != null){
+      callback(true);
+    }
+    else {
+      callback(false);
+    }
+  });
+}
+
 module.exports.getGame = function(nameInput, callback){
   Game.find({"name": nameInput}, callback);
 }
