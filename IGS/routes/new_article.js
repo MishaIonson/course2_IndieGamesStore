@@ -3,11 +3,11 @@ var router = express.Router();
 
 var Artice = require('../models/article');
 
-router.get('/', function(req, res, next) {
+router.get('/', ensureAuthenticated, function(req, res) {
   res.render('new_article');
 });
 
-router.post('/', function(req, res, next){
+router.post('/', ensureAuthenticated, function(req, res){
 
   var newArticle = new Article({
     title: req.body.title,
@@ -32,5 +32,14 @@ router.post('/', function(req, res, next){
     }
   });
 });
+
+
+function ensureAuthenticated(req, res, next){
+	if((req.isAuthenticated()) && (res.locals.user.user_type == 0)){
+		return next();
+	} else {
+		res.redirect('/index');
+	}
+}
 
 module.exports = router;
