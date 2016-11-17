@@ -1,44 +1,64 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/', function(req, res, next) {
+var User = require('../models/user');
 
-  //@TODO: upload from db
+router.get('/', ensureAuthenticated, function(req, res) {
+
   var account = {
-    name: "Misha",
-    email: "someEmail@gmail.com",
-    avatarPath: "misha" + ".png"
+    name: res.locals.user.name,
+    email: res.locals.user.email,
+    avatarPath: res.locals.user.name + ".png"
   };
 
   res.render('account_page', {account});
 });
 
+function ensureAuthenticated(req, res, next){
+	if(req.isAuthenticated()){
+		return next();
+	} else {
+		res.redirect('/login');
+	}
+}
+
 router.post('/', function(req, res, next){
 
-  //@TODO: delete
-  var account = {
-    name: "Misha",
-    email: "someEmail@gmail.com",
-    avatarPath: "empty.jpg"
-  };
-  //
 
-  if (req.body.password === "1") // @TODO
-  {
-    account.name = req.body.name;
-    account.email = req.body.email;
+  User.comparePassword(res.locals.user.password, req.body.password, function(err, equals){
+    if (equals){
 
-    if (req.files)
-    {
-      var picture = req.files.picture;
-      
-      picture.mv('./public/images/users/' + account.name + ".png", function(err){
+      User.getUserByEmail(res.locals.user.email, function(err, user){
         if (err)
-          res.status(500).send(err);
+          throw err;
+
+        user.name = req.body.name;
+        user.email = req.body.email;
+        user.save(function(err){
+          if (err){throw err;}
+
+          if (req.files)
+          {
+            var picture = req.files.picture;
+
+            picture.mv('./public/images/users/' + req.body.name + ".png", function(err){
+              if (err)
+                res.status(500).send(err);
+
+              res.redirect('account_page');
+            });
+          }
+          else {
+            res.redirect('account_page');
+          }
+        });
+
       });
     }
-  }
-  res.render('account_page', {account});
+    else {
+      res.redirect('account_page');
+    }
+  });
 });
 
 

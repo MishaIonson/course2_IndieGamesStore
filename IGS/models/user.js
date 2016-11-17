@@ -33,7 +33,10 @@ module.exports.getUserById = function(id, callback){
 }
 
 module.exports.getUserByEmail = function(email, callback){
-  User.findOne({"email": email}, callback);
+  var q = {email: email};
+  User.findOne(q, function(err, user){
+    callback(err, user);
+  });
 }
 
 module.exports.comparePassword = function(accountPassword_hash, formPassword, callback){
@@ -43,6 +46,7 @@ module.exports.comparePassword = function(accountPassword_hash, formPassword, ca
     callback(null, res);
 });
 }
+
 
 module.exports.addUser = function(user,callback) {
   const saltRounds = 10;

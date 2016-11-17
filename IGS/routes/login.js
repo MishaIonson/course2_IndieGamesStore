@@ -10,20 +10,20 @@ router.get('/', function(req, res, next) {
   res.render('login');
 });
 
-passport.use(new LocalStrategy(
+passport.use(new LocalStrategy({usernameField: 'email'},
   function(email, password, done) {
-
-    console.log('ooh! Came here to LocalStrategy');
 
     User.getUserByEmail(email, function(err, user){
       if (err){throw err;}
-      else if (!user){
+
+      if (!user){
         return done(null, false, {message: 'unkown user'});
       }
 
       User.comparePassword(user.password, password, function(err, equals){
         if (err) throw err;
-        else if (equals){
+
+        if (equals){
           return done(null, user);
         }
         else{
@@ -44,8 +44,7 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
-
-router.post('/login',
+router.post('/',
   passport.authenticate('local', {successRedirect:'/', failureRedirect:'/login', failureFlash: true}),
   function(req, res) {
     res.redirect('/');

@@ -30,6 +30,9 @@ app.use(session({
   resave: true
 }));
 
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(expressValidator({
   errorFormatter: function(param, msg, value) {
       var namespace = param.split('.')
