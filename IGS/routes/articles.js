@@ -8,20 +8,30 @@ router.get('/*', function(req, res, next) {
   var pathString = req.path.substr(1);
   pathString = decodeURI(pathString);
 
-  Article.getArticle(pathString, function(err, articles){
+  Article.containsArticle(pathString, function(err, contains){
+    if (contains)
+    {
+      Article.getArticle(pathString, function(err, articles){
 
-    if (err){res.render('error');}
-    else {
+        if (err){res.render('error');}
+        else {
 
-      var article = {
-        imagePath: articles[0].title + ".png",
-        title: articles[0].title,
-        description: articles[0].description
-      };
+          var article = {
+            imagePath: articles[0].title + ".png",
+            title: articles[0].title,
+            description: articles[0].description
+          };
 
-      res.render('articles', {article});
+          res.render('articles', {article});
+        }
+      });
+    }
+    else{
+      res.render('error');
     }
   });
+
+
 });
 
 module.exports = router;
