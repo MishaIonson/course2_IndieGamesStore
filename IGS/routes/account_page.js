@@ -9,8 +9,7 @@ router.get('/', ensureAuthenticated, function(req, res) {
 
   var account = {
     name: res.locals.user.name,
-    email: res.locals.user.email,
-    avatarPath: res.locals.user.name + ".png"
+    avatarPath: res.locals.user.email + ".png"
   };
 
   res.render('account_page', {account});
@@ -35,15 +34,14 @@ router.post('/', function(req, res, next){
           throw err;
 
         user.name = req.body.name;
-        user.email = req.body.email;
         user.save(function(err){
           if (err){throw err;}
 
-          if (req.files)
+          if (req.files != null)
           {
             var picture = req.files.picture;
 
-            picture.mv('./public/images/users/' + req.body.name + ".png", function(err){
+            picture.mv('./public/images/users/' + res.locals.user.email + ".png", function(err){
               if (err)
                 res.status(500).send(err);
 

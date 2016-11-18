@@ -21,9 +21,9 @@ module.exports.getArticle = function(titleInput, callback){
   Article.find({"title": titleInput}, callback);
 }
 
-module.exports.containsArticle = function(name, callback){
-  var q = {name: name};
-  Game.findOne(q, function(err, article){
+module.exports.containsArticle = function(title, callback){
+  var q = {title: title};
+  Article.findOne(q, function(err, article){
     if (err){throw err;}
 
     if (article != null){

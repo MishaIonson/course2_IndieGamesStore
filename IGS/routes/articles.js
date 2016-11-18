@@ -8,7 +8,7 @@ router.get('/*', function(req, res, next) {
   var pathString = req.path.substr(1);
   pathString = decodeURI(pathString);
 
-  Article.containsArticle(pathString, function(err, contains){
+  Article.containsArticle(pathString, function(contains){
     if (contains)
     {
       Article.getArticle(pathString, function(err, articles){
