@@ -29,7 +29,7 @@ router.post('/', function(req, res, next){
       }else{
         res.redirect('sign_up');
       }
-    })
+    });
   }
   else {
     res.redirect('sign_up');

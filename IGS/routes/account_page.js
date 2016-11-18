@@ -24,7 +24,7 @@ function ensureAuthenticated(req, res, next){
 	}
 }
 
-router.post('/', function(req, res, next){
+router.post('/', ensureAuthenticated, function(req, res){
 
 
   User.comparePassword(res.locals.user.password, req.body.password, function(err, equals){
