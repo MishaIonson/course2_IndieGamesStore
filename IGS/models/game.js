@@ -6,7 +6,11 @@ var gameSchema = mongoose.Schema({
     required: true
   },
   rating:{
-    type: String,
+    type: Number,
+    required: true
+  },
+  votes_number:{
+    type: Number,
     required: true
   },
   price:{
@@ -59,5 +63,5 @@ module.exports.containsGame = function(name, callback){
 }
 
 module.exports.getGame = function(nameInput, callback){
-  Game.find({"name": nameInput}, callback);
+  Game.findOne({"name": nameInput}, callback);
 }

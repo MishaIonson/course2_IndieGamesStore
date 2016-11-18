@@ -15,6 +15,7 @@ var userSchema = mongoose.Schema({
     required: true
   },
   games_names_list: [String],
+  games_reviewed: [String],
   user_type:{
     type: Number,
     required: true
@@ -61,6 +62,17 @@ module.exports.containsUser = function(email, callback){
   });
 }
 
+module.exports.haveReviewedGame = function(user, gameName, callback){
+  var reviewed = false;
+  for (var i = 0; i < user.games_reviewed.length; i++)
+  {
+    if (user.games_reviewed[i] === gameName){
+      reviewed = true;
+      break;
+    }
+  }
+  callback(reviewed);
+}
 
 module.exports.addUser = function(user,callback) {
   const saltRounds = 10;

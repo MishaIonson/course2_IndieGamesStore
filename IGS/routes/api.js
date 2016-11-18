@@ -19,6 +19,7 @@ router.get('/users', function(req, res, next) {
         name: users[i].name,
         email: users[i].email,
         games_names_list: users[i].games_names_list,
+        games_reviewed: users[i].games_reviewed,
         description: users[i].description,
         user_type: users[i].user_type
       });
@@ -39,6 +40,7 @@ router.get('/users/:email', function(req, res, next){
           name: user.name,
           email: user.email,
           games_names_list: user.games_names_list,
+          games_reviewed: users[i].games_reviewed,
           description: user.description,
           user_type: user.user_type
         }

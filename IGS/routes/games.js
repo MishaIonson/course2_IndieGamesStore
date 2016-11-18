@@ -10,17 +10,17 @@ router.get('/*', function(req, res, next) {
   pathString = decodeURI(pathString);
   Game.containsGame(pathString, function(contains){
     if (contains){
-      Game.getGame(pathString, function(err, games){
+      Game.getGame(pathString, function(err, gameIn){
 
         if (err){throw err;}
         else {
 
           var game = {
-            price: games[0].price,
-            name: games[0].name,
-            rating: games[0].rating,
-            description: games[0].description,
-            imagePath: games[0].name + ".png"
+            price: gameIn.price,
+            name: gameIn.name,
+            rating: gameIn.rating,
+            description: gameIn.description,
+            imagePath: gameIn.name + ".png"
           }
 
           res.render('games', {game});
@@ -34,25 +34,75 @@ router.get('/*', function(req, res, next) {
 
 });
 
-router.post('/*', function(req, res, next) {
+function ensureAuthenticated(req, res, next){
+	if(req.isAuthenticated()){
+		return next();
+	} else {
+		res.redirect('/login');
+	}
+}
+
+router.post('/*', ensureAuthenticated, function(req, res) {
 
   var pathString = req.path.substr(1);
   pathString = decodeURI(pathString);
 
-  User.getUserByEmail(res.locals.user.email, function(err, user){
-    if (err){throw err;}
+  if (req.body.review_score == null)
+  {
+    User.getUserByEmail(res.locals.user.email, function(err, user){
+      if (err){throw err;}
 
-    Game.containsGame(pathString, function(contains){
-      if (contains){
-        user.games_names_list.push(pathString);
-        user.save(function(err){
+      Game.containsGame(pathString, function(contains){
+        if (contains){
+          user.games_names_list.push(pathString);
+          user.save(function(err){
+            if (err){throw err;}
+
+            res.redirect(pathString);
+          });
+        }
+      });
+    });
+  }
+  else{
+    Game.containsGame(pathString, function(containsTheGame){
+      if (containsTheGame){
+        User.getUserByEmail(res.locals.user.email, function(err, userIn){
           if (err){throw err;}
+          User.haveReviewedGame(userIn, pathString, function(have){
+            if (!have){
+              Game.getGame(pathString, function(err, game){
+                if (err){throw err;}
 
-          res.redirect(pathString);
+                game.rating = (parseInt(req.body.review_score) + game.rating * game.votes_number) / (game.votes_number + 1);
+                game.rating = game.rating.toFixed(1);
+
+
+                game.votes_number++;
+                game.save(function(err){
+                  if (err){throw err;}
+
+
+
+                    userIn.games_reviewed.push(pathString);
+                    userIn.save(function(err){
+                      res.redirect(pathString);
+                    });
+                  });
+
+                });
+          }else{
+            res.redirect(pathString);
+          }
         });
+      });
+      }else{
+        console.log("does not contain");
+        res.redirect('error');
       }
     });
-  });
+  }
+
 });
 
 

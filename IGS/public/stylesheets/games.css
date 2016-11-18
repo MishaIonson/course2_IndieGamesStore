@@ -72,3 +72,35 @@
 #buy_info:hover{
   background-color: #504e49;
 }
+
+
+
+#review_div{
+  margin-top: 3%;
+}
+
+input{
+  margin-top: 2vh;
+  font-family: 'Lekton', Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 25px;
+  color: #000000;
+}
+
+input.button{
+  border: none;
+  background-color: #42413D;
+}
+
+input.button:hover{
+  background-color: #6A6862;
+}
+
+input.editview{
+  border-color: #353431;
+  background-color: #959492;
+}
+
+input.editview:focus{
+  border-color: #FFCE2B;
+}
