@@ -47,6 +47,20 @@ module.exports.comparePassword = function(accountPassword_hash, formPassword, ca
 });
 }
 
+module.exports.containsUser = function(email, callback){
+  var q = {email: email};
+  User.findOne(q, function(err, user){
+    if (err){throw err;}
+
+    if (user != null){
+      callback(true);
+    }
+    else {
+      callback(false);
+    }
+  });
+}
+
 
 module.exports.addUser = function(user,callback) {
   const saltRounds = 10;

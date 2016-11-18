@@ -9,6 +9,7 @@ router.get('/', ensureAuthenticated, function(req, res) {
 
   var account = {
     name: res.locals.user.name,
+    email: res.locals.user.email,
     avatarPath: res.locals.user.email + ".png"
   };
 

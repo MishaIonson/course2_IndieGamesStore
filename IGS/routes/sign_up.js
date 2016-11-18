@@ -18,12 +18,18 @@ router.post('/', function(req, res, next){
       description: ""
     });
 
-    User.addUser(newAccount, function(err, user){
-        if(err)
-          throw err;
+    User.containsUser(newAccount.email, function(doesContain){
+      if (!doesContain){
+        User.addUser(newAccount, function(err, user){
+            if(err)
+              throw err;
 
-        res.redirect('login');
-      });
+            res.redirect('login');
+          });
+      }else{
+        res.redirect('sign_up');
+      }
+    })
   }
   else {
     res.redirect('sign_up');
