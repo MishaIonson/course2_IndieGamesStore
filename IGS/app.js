@@ -72,6 +72,7 @@ var articlesPage = require('./routes/articles');
 var account_page = require('./routes/account_page');
 var new_article = require('./routes/new_article');
 var api = require('./routes/api');
+// var images = require('./routes/images');
 
 
 // view engine setup
@@ -99,6 +100,7 @@ app.use('/articles', articlesPage);
 app.use('/account_page', account_page);
 app.use('/new_article', new_article);
 app.use('/api', api);
+// app.use('/images', images);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
