@@ -122,6 +122,24 @@ router.get('/games', function(req, res, next) {
 
 });
 
+router.get('/games/:game_name', function(req, res, next) {
+
+  Game.getGame(req.params.game_name, function(err, game){
+    if (err){throw err;}
+
+    res.json(game);
+  });
+
+});
+
+router.get('/search', function(req, res, next) {
+
+  Game.getGamesByQuery(req.query.search_line, function(err, games){
+    res.json(games);
+  });
+
+});
+
 router.get('/articles', function(req, res, next) {
 
   Article.getArticles(function(err, articles){
