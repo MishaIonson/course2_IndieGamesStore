@@ -8,6 +8,9 @@ var articleSchema = mongoose.Schema({
   description:{
     type: String,
     required: true
+  },
+  image:{
+    type: Buffer
   }
 }, {collection: 'articles'});
 
