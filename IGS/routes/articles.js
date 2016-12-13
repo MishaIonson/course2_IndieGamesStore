@@ -34,4 +34,26 @@ router.get('/*', function(req, res, next) {
 
 });
 
+router.post('/*', function(req, res, next) {
+
+  var pathString = req.path.substr(1);
+  pathString = decodeURI(pathString);
+
+  Article.containsArticle(pathString, function(contains){
+    if (contains)
+    {
+      Article.deleteArticle(pathString, function(err){
+        if (err){throw err;}
+
+        res.redirect('/');
+      });
+    }
+    else{
+      res.render('error');
+    }
+  });
+
+
+});
+
 module.exports = router;

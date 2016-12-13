@@ -41,3 +41,7 @@ module.exports.containsArticle = function(title, callback){
 module.exports.addArticle = function(article,callback) {
   article.save(callback);
 }
+
+module.exports.deleteArticle = function(title, callback){
+  Article.findOneAndRemove({title: title}, callback);
+}
