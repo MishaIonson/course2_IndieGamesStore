@@ -17,7 +17,7 @@ router.get('/*', function(req, res, next) {
         else {
 
           var article = {
-            imagePath: articles[0].title + ".png",
+            imagePath: articles[0].title,
             title: articles[0].title,
             description: articles[0].description
           };

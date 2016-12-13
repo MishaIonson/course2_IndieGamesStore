@@ -17,7 +17,7 @@ router.get('/', function(req, res, next) {
         posts.push({
           href: "/articles/" + articles[i].title,
           title: articles[i].title,
-          imagePath: articles[i].title + ".png"
+          imagePath: articles[i].title
         });
       }
       res.render('index', {posts: posts});

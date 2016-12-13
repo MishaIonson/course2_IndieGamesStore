@@ -4,6 +4,7 @@
 <link href="stylesheets/login.css" rel="stylesheet"  type="text/css">
 <link href='http://fonts.googleapis.com/css?family=Lekton' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Molengo' rel='stylesheet' type='text/css'>
+<script src="javascripts/validate.js"></script>
 
 <html>
 <head>
@@ -35,9 +36,9 @@
     </div>
 
     <div id='content'>
-      <form method='post'>
-        <input class='editview' name="email" type='email' placeholder="email" required><br>
-        <input class='editview' name="password" type='password' placeholder="password" required><br>
+      <form method='post' onsubmit="return validateForm()">
+        <input id="email" class='editview' name="email" placeholder="email"><br>
+        <input id="password" class='editview' name="password" type='password' placeholder="password"><br>
         <input class='button' type='submit' value='OK'>
         <a href='sign_up'><input class='button' type='button' value='SIGN UP'></a>
       </form>

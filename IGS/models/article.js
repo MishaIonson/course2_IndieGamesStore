@@ -45,3 +45,12 @@ module.exports.addArticle = function(article,callback) {
 module.exports.deleteArticle = function(title, callback){
   Article.findOneAndRemove({title: title}, callback);
 }
+
+module.exports.getImage = function(title, callback){
+  Article.findOne({title: title}, function(err, article){
+    if (err)
+    return;
+
+    callback(article.image);
+  });
+}
