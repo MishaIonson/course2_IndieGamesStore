@@ -15,7 +15,8 @@ router.post('/', function(req, res, next){
       password: req.body.password,
       games_names_list: [],
       user_type: 1,
-      description: ""
+      description: "",
+      image: ""
     });
 
     User.containsUser(newAccount.email, function(doesContain){

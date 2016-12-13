@@ -34,24 +34,12 @@ router.post('/', ensureAuthenticated, function(req, res){
         if (err)
           throw err;
 
+        user.image = req.files.picture.data;
+
         user.name = req.body.name;
         user.save(function(err){
           if (err){throw err;}
-
-          if (req.files != null)
-          {
-            var picture = req.files.picture;
-
-            picture.mv('./public/images/users/' + res.locals.user.email + ".png", function(err){
-              if (err)
-                res.status(500).send(err);
-
-              res.redirect('account_page');
-            });
-          }
-          else {
             res.redirect('account_page');
-          }
         });
 
       });

@@ -19,8 +19,7 @@ router.get('/*', function(req, res, next) {
             price: gameIn.price,
             name: gameIn.name,
             rating: gameIn.rating,
-            description: gameIn.description,
-            imagePath: gameIn.name + ".png"
+            description: gameIn.description
           }
 
           res.render('games', {game});

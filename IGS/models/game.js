@@ -68,3 +68,12 @@ module.exports.containsGame = function(name, callback){
 module.exports.getGame = function(nameInput, callback){
   Game.findOne({"name": nameInput}, callback);
 }
+
+module.exports.getImage = function(name, callback){
+  Game.findOne({name: name}, function(err, game){
+    if (err)
+    return;
+
+    callback(game.image);
+  });
+}

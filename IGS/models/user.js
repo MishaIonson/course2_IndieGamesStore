@@ -20,7 +20,10 @@ var userSchema = mongoose.Schema({
     type: Number,
     required: true
   },
-  description: String
+  description: String,
+  image:{
+    type: Buffer
+  }
 }, {collection: 'users'});
 
 var User = module.exports = mongoose.model('User',userSchema);
@@ -80,5 +83,14 @@ module.exports.addUser = function(user,callback) {
   bcrypt.hash(user.password, saltRounds, function(err, hashPassword){
     user.password = hashPassword;
     user.save(callback);
+  });
+}
+
+module.exports.getImage = function(email, callback){
+  User.findOne({email: email}, function(err, user){
+    if (err)
+    return;
+
+    callback(user.image);
   });
 }

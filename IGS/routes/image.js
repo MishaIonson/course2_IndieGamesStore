@@ -16,4 +16,28 @@ router.get('/articles/:article_title', function(req, res, next) {
   });
 });
 
+router.get('/games/:games_name', function(req, res, next) {
+  Game.getImage(req.params.games_name, function(image){
+
+    res.writeHead(200, {
+       'Content-Type': 'image/png',
+       'Content-Length': image.length
+    });
+
+    res.end(image);
+  });
+});
+
+router.get('/users/:email', function(req, res, next) {
+  User.getImage(req.params.email, function(image){
+
+    res.writeHead(200, {
+       'Content-Type': 'image/png',
+       'Content-Length': image.length
+    });
+
+    res.end(image);
+  });
+});
+
 module.exports = router;
