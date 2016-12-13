@@ -19,8 +19,13 @@ input.button:hover{
   background-color: #6A6862;
 }
 
-input.editview{
+.editview{
   border-color: #353431;
+  background-color: #959492;
+}
+
+.editview_unvalid{
+  border-color: red;
   background-color: #959492;
 }
 
