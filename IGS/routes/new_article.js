@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var validator = require('validator');
 var csrf = require('csurf');
+var replaceall = require("replaceall");
 
 var Artice = require('../models/article');
 
@@ -11,7 +12,23 @@ router.get('/', csrf({ cookie: true }), ensureAuthenticated, function(req, res) 
 
 router.post('/', csrf({ cookie: true }), ensureAuthenticated, function(req, res){
 
-  if (!(validator.isAlphanumeric(req.body.title) && validator.isAlphanumeric(req.body.description))){
+  var descriptionForValidation = req.body.description;
+  var titleForValidation = req.body.title;
+  descriptionForValidation = replaceall(" ", "0", descriptionForValidation);
+  descriptionForValidation = replaceall(".", "0", descriptionForValidation);
+  descriptionForValidation = replaceall(",", "0", descriptionForValidation);
+  descriptionForValidation = replaceall("!", "0", descriptionForValidation);
+  descriptionForValidation = replaceall("-", "0", descriptionForValidation);
+  descriptionForValidation = replaceall("\n", "0", descriptionForValidation);
+  descriptionForValidation = replaceall(":", "0", descriptionForValidation);
+  descriptionForValidation = replaceall(";", "0", descriptionForValidation);
+  titleForValidation = replaceall(" ", "0", titleForValidation);
+  titleForValidation = replaceall(".", "0", titleForValidation);
+  titleForValidation = replaceall(",", "0", titleForValidation);
+  titleForValidation = replaceall("!", "0", titleForValidation);
+  titleForValidation = replaceall("-", "0", titleForValidation);
+
+  if (!(validator.isAlphanumeric(titleForValidation) && validator.isAlphanumeric(descriptionForValidation))){
     res.redirect('new_article');
     return;
   }
