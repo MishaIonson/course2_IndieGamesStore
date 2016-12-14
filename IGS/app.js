@@ -7,6 +7,12 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var fileUpload = require('express-fileupload');
 var mongoose = require('mongoose');
+var validator = require('validator');
+
+// CSRF protection
+var csrf = require('csurf');
+var csrfProtection = csrf({cookie:true});
+//
 mongoose.connect('mongodb://localhost/igs_db');
 
 var app = express();
@@ -93,7 +99,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(fileUpload());
 
 app.use('/', routes);
-app.use('/index', routes);
+app.use('/index', csrfProtection, routes);
 app.use('/login', login);
 app.use('/logout', logout);
 app.use('/sign_up', sign_up);

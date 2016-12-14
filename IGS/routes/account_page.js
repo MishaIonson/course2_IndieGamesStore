@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var validator = require('validator');
 
 //@TODO: fix bad: because of name as path for image, in case of name changing images will be lost
 
@@ -24,6 +25,11 @@ function ensureAuthenticated(req, res, next){
 }
 
 router.post('/', ensureAuthenticated, function(req, res){
+
+  if (!validator.isAlphanumeric(req.body.name)){
+    res.redirect('account_page');
+    return;
+  }
 
 
   User.comparePassword(res.locals.user.password, req.body.password, function(err, equals){

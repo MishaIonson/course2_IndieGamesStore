@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var validator = require('validator');
 
 var Game = require('../models/game');
 
@@ -8,6 +9,11 @@ router.get('/', ensureAuthenticated, function(req, res) {
 });
 
 router.post('/', ensureAuthenticated, function(req, res){
+
+  if (!(validator.isInt(req.body.price) && validator.isAlphanumeric(req.body.name) && validator.isAlphanumeric(req.body.description))){
+    res.redirect('new_game');
+    return;
+  }
 
   var newGame = new Game({
     name: req.body.name,
