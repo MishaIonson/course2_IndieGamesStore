@@ -13,7 +13,8 @@ var validator = require('validator');
 var csrf = require('csurf');
 var csrfProtection = csrf({cookie:true});
 //
-mongoose.connect('mongodb://localhost/igs_db');
+mongoose.connect('mongodb://igsuser_for_db:ybrnjybrjulf@ds133418.mlab.com:33418/igsdb_test');
+
 
 var app = express();
 var db = mongoose.connection;
