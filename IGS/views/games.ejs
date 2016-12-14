@@ -54,7 +54,9 @@
             if (user.games_names_list[i] == game.name)
             {
               %>
-              <p id='havebought_info'>BOUGHT</p>
+              <form method='get' action='../download/<%=game.name%>'>
+                <input type='submit' id='havebought_info' value='DOWNLOAD'/>
+              </form>
               <%
               bought = true;
               break;
@@ -63,7 +65,7 @@
           if (!bought){
           %>
           <form method='post'>
-            <input type='submit' id='buy_info' value='BUY!'/>
+            <input type='submit' id='buy_info' value='BUY'/>
           </form>
           <%}
         }

@@ -9,8 +9,7 @@ router.get('/', ensureAuthenticated, function(req, res) {
 
   var account = {
     name: res.locals.user.name,
-    email: res.locals.user.email,
-    avatarPath: res.locals.user.email + ".png"
+    email: res.locals.user.email
   };
 
   res.render('account_page', {account});

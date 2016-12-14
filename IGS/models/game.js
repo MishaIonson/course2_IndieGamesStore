@@ -27,6 +27,9 @@ var gameSchema = mongoose.Schema({
   },
   image:{
     type: Buffer
+  },
+  file:{
+    type: Buffer
   }
 }, {collection: 'games'});
 
