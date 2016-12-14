@@ -53,6 +53,15 @@
     </a>
     <%}%>
 
+    <%if((user != null) && (user.user_type == 2))
+    {%>
+      <div id='add_button_div'>
+        <a href='new_game'>
+          <img id='add_button_img' src='images/add_button.png'></img>
+        </a>
+      </div>
+    <%}%>
+
 
     <footer>
       <div id='footer_line'> </div>

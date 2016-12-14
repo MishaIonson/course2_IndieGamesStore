@@ -80,3 +80,11 @@ module.exports.getImage = function(name, callback){
     callback(game.image);
   });
 }
+
+module.exports.addGame = function(game, callback){
+  game.save(callback);
+}
+
+module.exports.deleteGame = function(name, callback){
+  Game.findOneAndRemove({name: name}, callback);
+}

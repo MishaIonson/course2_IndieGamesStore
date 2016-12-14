@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!--  -->
+<link href="stylesheets/main_style.css" rel="stylesheet"  type="text/css">
+<link href="stylesheets/login.css" rel="stylesheet"  type="text/css">
+<link href="stylesheets/account_page.css" rel="stylesheet"  type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Lekton' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Molengo' rel='stylesheet' type='text/css'>
+
+<html>
+<head>
+  <title>IGS - NEW ARTICLE</title>
+</head>
+  <body>
+    <div id='toolbar_div'>
+
+      <div class="cf">
+        <div id='navigationbar_div'>
+          <a href='index'><p class='navigation_element'>NEWS</p></a>
+          <a href='top'><p class='navigation_element'>TOP</p></a>
+          <form id='search_form' action='/search' method="get">
+            <input type='text' id='search_editview' name='search_line'>
+            <input type='submit' id='search_submit_button' value=' '>
+          </form>
+          <!-- session stuff -->
+          <%if (user == null){%>
+            <a href='login'><p class='navigation_element'>LOGIN</p></a>
+          <%}else{%>
+            <a href='account_page'><p class='navigation_element'>PROFILE</p></a>
+            <a href='logout'><p class='navigation_element'>LOGOUT</p></a>
+          <%}%>
+          <!-- -->
+        </div>
+      </div>
+
+      <div id='toolbar_bottom_line'> </div>
+    </div>
+
+    <div id='content'>
+      <form method="post" enctype="multipart/form-data">
+        <p class='description'>Set image</p>
+        <input class='editview' type="file" name="image"  accept='image/png'><br>
+        <p class='description'>upload game file</p>
+        <input class='editview' type="file" name="file"><br>
+        <input class='editview' name="name" type='text' placeholder="Name"><br>
+        <input class='editview' name="price" type='number' placeholder="Price"><br>
+        <textarea class='editview'  name="description" placeholder="description" cols="50" rows="10"></textarea><br>
+        <input class='button' type='submit' value='SAVE'>
+      </form>
+    </div>
+
+</html>

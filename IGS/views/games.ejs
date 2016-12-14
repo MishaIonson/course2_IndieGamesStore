@@ -73,7 +73,7 @@
 
       <p id='game_description'><%=game.description%></p>
 
-      <%if (user != null){%>
+      <%if ((user != null) && (user.user_type == 1)){%>
         <div id='review_div'>
           <form method='post'>
             <input class='editview' name="review_score" type='number' min="1" max="10" placeholder="review score">
@@ -83,6 +83,13 @@
       <%}%>
 
     </div>
+
+    <%if((user != null) && (user.user_type == 2))
+    {%>
+        <form method="post">
+          <input src='../images/delete_button.png' class='button' type="image" alt="Submit Form" id='add_button_img'>
+        </form>
+    <%}%>
 
 
 

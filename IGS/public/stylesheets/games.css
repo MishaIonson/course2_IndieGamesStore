@@ -53,11 +53,17 @@
 
 #havebought_info{
   font-family: 'Molengo', Georgia, Times, serif;
-  color: #ffffff;
+  color: #42413D;
   float: left;
   margin-left: 10%;
   padding: 1%;
   background-color: #FFCE2B;
+}
+
+
+#havebought_info:hover{
+  background-color: #504e49;
+  color: #ffffff;
 }
 
 #buy_info{

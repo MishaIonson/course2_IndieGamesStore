@@ -75,6 +75,7 @@ var new_article = require('./routes/new_article');
 var api = require('./routes/api');
 var image = require('./routes/image');
 var download = require('./routes/download');
+var new_game = require('./routes/new_game');
 // var images = require('./routes/images');
 
 
@@ -105,6 +106,7 @@ app.use('/new_article', new_article);
 app.use('/api', api);
 app.use('/image', image);
 app.use('/download', download);
+app.use('/new_game', new_game);
 // app.use('/images', images);
 
 // catch 404 and forward to error handler

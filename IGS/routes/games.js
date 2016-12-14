@@ -46,6 +46,20 @@ router.post('/*', ensureAuthenticated, function(req, res) {
   var pathString = req.path.substr(1);
   pathString = decodeURI(pathString);
 
+  if (res.locals.user.user_type == 2){
+
+    Game.getGame(pathString, function(err, game){
+      if (game.developer_name == res.locals.user.name){
+        Game.deleteGame(pathString, function(err){
+          if (err){throw err;}
+
+          res.redirect('/');
+        });
+      }
+    });
+    return;
+  }
+
   if (req.body.review_score == null)
   {
     User.getUserByEmail(res.locals.user.email, function(err, user){
