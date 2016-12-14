@@ -1,9 +1,10 @@
 var express = require('express');
 var router = express.Router();
+var csrf = require('csurf');
 
 Article = require('../models/article');
 
-router.get('/*', function(req, res, next) {
+router.get('/*', csrf({ cookie: true }), function(req, res, next) {
 
   var pathString = req.path.substr(1);
   pathString = decodeURI(pathString);
@@ -22,7 +23,7 @@ router.get('/*', function(req, res, next) {
             description: articles[0].description
           };
 
-          res.render('articles', {article});
+          res.render('articles', {article,  csrfToken: req.csrfToken() });
         }
       });
     }
@@ -34,7 +35,7 @@ router.get('/*', function(req, res, next) {
 
 });
 
-router.post('/*', function(req, res, next) {
+router.post('/*', csrf({ cookie: true }), function(req, res, next) {
 
   var pathString = req.path.substr(1);
   pathString = decodeURI(pathString);

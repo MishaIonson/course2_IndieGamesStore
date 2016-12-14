@@ -65,6 +65,7 @@
           if (!bought){
           %>
           <form method='post'>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
             <input type='submit' id='buy_info' value='BUY'/>
           </form>
           <%}
@@ -73,9 +74,10 @@
 
       <p id='game_description'><%=game.description%></p>
 
-      <%if ((user != null) && (user.user_type == 1)){%>
+      <%if ((user != null) && (user.user_type == 1) && (allowReview)){%>
         <div id='review_div'>
           <form method='post'>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
             <input class='editview' name="review_score" type='number' min="1" max="10" placeholder="review score">
             <input class='button' type='submit' value='SUBMIT'>
           </form>
@@ -84,19 +86,37 @@
 
     </div>
 
-    <%if((user != null) && (user.user_type == 2))
+    <%if((user != null) && (user.user_type == 2) && (showDeleteButton))
     {%>
-        <form method="post">
-          <input src='../images/delete_button.png' class='button' type="image" alt="Submit Form" id='add_button_img'>
-        </form>
+      <div id='add_button_div' onclick="deleteClicked()">
+          <img id='add_button_img' src='../images/delete_button.png'></img>
+      </div>
     <%}%>
 
+    <div id="modal_window" class="modal" onclick="cancelClicked()">
 
+      <div id='modal_content'>
+        <form method="post">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+          <input class='button' type='submit' alt="Submit Form" id='confirm_button' value='delete'>
+        </form>
+        <input class='button' id='cancel_button' type='button' value='cancel' onclick="cancelClicked()">
+      </div>
 
-    <footer>
-      <div id='footer_line'> </div>
-     <p id='footer_text'>Mykhailo Ivanov, 2016</p>
-    </footer>
+    </div>
   </body>
+
+  <script>
+
+    function deleteClicked(){
+      var modal = document.getElementById('modal_window');
+      modal.style.display="block";
+    }
+
+    function cancelClicked(){
+      var modal = document.getElementById('modal_window');
+      modal.style.display="none";
+    }
+  </script>
 
 </html>

@@ -51,10 +51,6 @@
 
     <%if((user != null) && (user.user_type == 0))
     {%>
-
-      <!-- <form method="post" id='add_button_div'>
-        <input id='add_button_img' type='image' alt="Submit Form" src='../images/delete_button.png'>
-      </form> -->
       <div id='add_button_div' onclick="deleteClicked()">
           <img id='add_button_img' src='../images/delete_button.png'></img>
       </div>
@@ -64,6 +60,7 @@
 
       <div id='modal_content'>
         <form method="post">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
           <input class='button' type='submit' alt="Submit Form" id='confirm_button' value='delete'>
         </form>
         <input class='button' id='cancel_button' type='button' value='cancel' onclick="cancelClicked()">

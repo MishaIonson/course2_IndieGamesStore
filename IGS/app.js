@@ -99,7 +99,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(fileUpload());
 
 app.use('/', routes);
-app.use('/index', csrfProtection, routes);
+app.use('/index', routes);
 app.use('/login', login);
 app.use('/logout', logout);
 app.use('/sign_up', sign_up);

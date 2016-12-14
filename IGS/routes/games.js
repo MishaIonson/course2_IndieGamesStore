@@ -1,10 +1,11 @@
 var express = require('express');
 var router = express.Router();
+var csrf = require('csurf');
 
 var Game = require('../models/game');
 var User = require('../models/user');
 
-router.get('/*', function(req, res, next) {
+router.get('/*', csrf({ cookie: true }), function(req, res, next) {
 
   var pathString = req.path.substr(1);
   pathString = decodeURI(pathString);
@@ -15,14 +16,30 @@ router.get('/*', function(req, res, next) {
         if (err){throw err;}
         else {
 
+          var showDeleteButton = false;
+          if ((res.locals.user != null) && (res.locals.user.user_type == 2) && (gameIn.developer_name == res.locals.user.name)){
+            showDeleteButton = true;
+          }
+
           var game = {
             price: gameIn.price,
             name: gameIn.name,
             rating: gameIn.rating,
             description: gameIn.description
           }
+          var allowReview = true;
+          if ((res.locals.user != null) && (res.locals.user.user_type == 1)){
+            for (var i = 0; i < res.locals.user.games_reviewed.length; i++){
+              if (res.locals.user.games_reviewed[i] == game.name){
+                allowReview = false;
+                break;
+              }
+            }
+          }else{
+            allowReview = false;
+          }
 
-          res.render('games', {game});
+          res.render('games', {game, csrfToken: req.csrfToken(), showDeleteButton, allowReview});
         }
       });
     }
@@ -41,7 +58,7 @@ function ensureAuthenticated(req, res, next){
 	}
 }
 
-router.post('/*', ensureAuthenticated, function(req, res) {
+router.post('/*', csrf({ cookie: true }), ensureAuthenticated, function(req, res) {
 
   var pathString = req.path.substr(1);
   pathString = decodeURI(pathString);
@@ -55,7 +72,10 @@ router.post('/*', ensureAuthenticated, function(req, res) {
 
           res.redirect('/');
         });
+      }else{
+        res.redirect('/top');
       }
+
     });
     return;
   }
