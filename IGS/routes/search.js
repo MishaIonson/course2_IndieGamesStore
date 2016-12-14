@@ -9,6 +9,11 @@ router.get('/*', function(req, res, next) {
   // console.log("Searched: " + req.query.search_line);
   var feed_posts = [];
 
+  if (req.query.search_line == null){
+    res.redirect('../error');
+    return;
+  }
+
 
   Game.getGamesByQuery(req.query.search_line, function(err, games){
 

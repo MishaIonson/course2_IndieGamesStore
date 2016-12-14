@@ -22,7 +22,7 @@ router.get('/', function(req, res, next) {
           description: games[i].description
         });
       }
-      res.render('search', {feed_posts: feed_posts});
+      res.render('top', {feed_posts: feed_posts});
     }
   });
 });

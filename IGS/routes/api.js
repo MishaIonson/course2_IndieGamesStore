@@ -132,9 +132,9 @@ router.get('/games/:game_name', function(req, res, next) {
 
 });
 
-router.get('/search', function(req, res, next) {
+router.get('/search/:search_line', function(req, res, next) {
 
-  Game.getGamesByQuery(req.query.search_line, function(err, games){
+  Game.getGamesByQuery(req.params.search_line, function(err, games){
     res.json(games);
   });
 

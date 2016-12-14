@@ -6,26 +6,11 @@
 <link href='http://fonts.googleapis.com/css?family=Lekton' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Molengo' rel='stylesheet' type='text/css'>
 
+ <script src="javascript/search.js"></script>
+
 <html>
 <head>
-  <title>IGS - SEARCH</title>
-  <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js'></script>
-
-  <script type="text/javascript">
-    function search(){
-
-      var searchQueue = $("#search_editview").val();
-
-      $.get("/api/search/" + searchQueue, function(data, status){
-        $("#content").empty();
-        for (var i = 0; i < data.length; i++){
-          $("#content").append("<a href='/games/" + data[i].name + "'><div class='feed_div_layout'><div class='post_image_div'><img class='post_image' src='image/games/" + data[i].name + "'></img></div><div class='feed_post_text_layout'><p class='feed_post_title'>" + data[i].name + "</p><p class='feed_post_description'>" + data[i].name + "</p></div></div></a>");
-        }
-      });
-
-      return false;
-    }
-  </script>
+  <title>IGS - NEWS</title>
 </head>
   <body>
     <div id='toolbar_div'>
@@ -34,7 +19,7 @@
         <div id='navigationbar_div'>
           <a href='index'><p class='navigation_element'>NEWS</p></a>
           <a href='top'><p class='navigation_element'>TOP</p></a>
-          <form id='search_form' onsubmit="return search();">
+          <form id='search_form' action='/search' method="get">
             <input type='text' id='search_editview' name='search_line'>
             <input type='submit' id='search_submit_button' value=' '>
           </form>
@@ -53,23 +38,20 @@
     </div>
 
 
-
-    <div id="content">
-      <% for (var i = 0; i < feed_posts.length; i++)
-      {%>
-      <a href='<%= feed_posts[i].href %>'>
-        <div class='feed_div_layout'>
-          <div class='post_image_div'>
-            <img class='post_image' src='image/games/<%= feed_posts[i].title %>'></img>
-          </div>
-          <div class='feed_post_text_layout'>
-            <p class='feed_post_title'><%=feed_posts[i].title%></p>
-            <p class='feed_post_description'><%=feed_posts[i].description%></p>
-          </div>
+    <% for (var i = 0; i < feed_posts.length; i++)
+    {%>
+    <a href="<%= feed_posts[i].href %>">
+      <div class='feed_div_layout'>
+        <div class='post_image_div'>
+          <img class='post_image' src='image/games/<%= feed_posts[i].title %>'></img>
         </div>
-      </a>
-      <%}%>
-    </div>
+        <div class='feed_post_text_layout'>
+          <p class='feed_post_title'><%=feed_posts[i].title%></p>
+          <p class='feed_post_description'><%=feed_posts[i].description%></p>
+        </div>
+      </div>
+    </a>
+    <%}%>
 
     <%if((user != null) && (user.user_type == 2))
     {%>
