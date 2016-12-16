@@ -44,6 +44,11 @@
         <p id='game_name'><%=game.name%></p>
         <p id='game_rating'><%=game.rating%></p>
       </div>
+      <a id ="developer_name_link" href="../developer/<%=game.developer_name%>">
+        <div>
+          <p id="developer_name_p">by <%=game.developer_name%></p>
+        </div>
+      </a>
 
       <%
         if ((user != null) && (user.user_type == 1))

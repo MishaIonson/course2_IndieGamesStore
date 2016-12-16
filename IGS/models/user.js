@@ -36,11 +36,14 @@ module.exports.getUserById = function(id, callback){
   User.findById(id, callback);
 }
 
+module.exports.getUserByName = function(name, callback){
+  var q = {name: name};
+  User.findOne(q, callback);
+}
+
 module.exports.getUserByEmail = function(email, callback){
   var q = {email: email};
-  User.findOne(q, function(err, user){
-    callback(err, user);
-  });
+  User.findOne(q, callback);
 }
 
 module.exports.comparePassword = function(accountPassword_hash, formPassword, callback){
@@ -54,7 +57,7 @@ module.exports.comparePassword = function(accountPassword_hash, formPassword, ca
 module.exports.containsUser = function(email, callback){
   var q = {email: email};
   User.findOne(q, function(err, user){
-    if (err){throw err;}
+    if (err){callback(false)}
 
     if (user != null){
       callback(true);

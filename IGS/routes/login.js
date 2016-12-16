@@ -14,14 +14,14 @@ passport.use(new LocalStrategy({usernameField: 'email'},
   function(email, password, done) {
 
     User.getUserByEmail(email, function(err, user){
-      if (err){throw err;}
+      if (err){res.send(404); return;}
 
       if (!user){
         return done(null, false, {message: 'unkown user'});
       }
 
       User.comparePassword(user.password, password, function(err, equals){
-        if (err) throw err;
+        if (err) {res.send(404); return;}
 
         if (equals){
           return done(null, user);

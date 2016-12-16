@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--  -->
+<link href="../stylesheets/main_style.css" rel="stylesheet"  type="text/css">
+<link href="../stylesheets/login.css" rel="stylesheet"  type="text/css">
+<link href="../stylesheets/account_page.css" rel="stylesheet"  type="text/css">
+<link href="../stylesheets/games.css" rel="stylesheet"  type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Lekton' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Molengo' rel='stylesheet' type='text/css'>
+
+<html>
+<head>
+  <title>IGS - <%=userOut.name%></title>
+</head>
+  <body>
+    <div id='toolbar_div'>
+
+      <div class="cf">
+        <div id='navigationbar_div'>
+          <a href='../index'><p class='navigation_element'>NEWS</p></a>
+          <a href='../top'><p class='navigation_element'>TOP</p></a>
+          <form id='search_form' action='/search' method="get">
+            <input type='text' id='search_editview' name='search_line'>
+            <input type='submit' id='search_submit_button' value=' '>
+          </form>
+          <!-- session stuff -->
+          <%if (user == null){%>
+            <a href='../login'><p class='navigation_element'>LOGIN</p></a>
+          <%}else{%>
+            <a href='../account_page'><p class='navigation_element'>PROFILE</p></a>
+            <a href='../logout'><p class='navigation_element'>LOGOUT</p></a>
+          <%}%>
+          <!-- -->
+        </div>
+      </div>
+
+      <div id='toolbar_bottom_line'> </div>
+    </div>
+
+    <div id='game_body_div'>
+      <div id='game_image_div'>
+        <img src="../image/users/<%=userOut.email%>"></img>
+      </div>
+
+      <div id='header_div'>
+        <p id='game_name'><%=userOut.name%></p>
+      </div>
+
+      <p id='game_description'><%=userOut.description%></p>
+
+    </div>
+
+    </div>
+  </body>
+
+</html>

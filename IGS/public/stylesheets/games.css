@@ -26,6 +26,27 @@
   padding-top: 2%;
 }
 
+#developer_name_p{
+  display: inline-block;
+  font-family: 'Molengo', Georgia, Times, serif;
+  font-size: 1.4em;
+  color: #ffffff;
+  font-weight: bold;
+
+  padding-left: 1.5vw;
+  padding-right: 1.5vw;
+  padding-top: 0.75vw;
+  padding-bottom: 0.7vw;
+}
+
+#developer_name_p:hover{
+  background-color: #6A6862;
+}
+
+#developer_name_p:focus{
+  background-color: #6A6862;
+}
+
 #game_name{
   display: inline-block;
   font-family: 'Molengo', Georgia, Times, serif;
@@ -83,6 +104,10 @@
 
 #review_div{
   margin-top: 3%;
+}
+
+#developer_name_div{
+
 }
 
 input{

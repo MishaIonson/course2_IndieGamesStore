@@ -10,7 +10,7 @@ router.get('/users', function(req, res, next) {
 
   User.getUsers(function(err,users){
     if(err)
-      throw err;
+      {res.send(404);return;}
     var usersOutput = [];
     for (var i = 0; i < users.length; i++)
     {
@@ -34,7 +34,7 @@ router.get('/users/:email', function(req, res, next){
   User.containsUser(req.params.email, function(contains){
     if (contains){
       User.getUserByEmail(req.params.email, function(err, user){
-        if (err){throw err;}
+        if (err){res.send(404);return;}
 
         var userOutput = {
           name: user.name,
@@ -69,7 +69,7 @@ router.post('/users', function(req, res, next){
     if (!doesContain){
       User.addUser(newAccount, function(err, user){
           if(err)
-            throw err;
+            {res.send(404);return;}
 
           res.send(200);
         });
@@ -115,7 +115,7 @@ router.get('/games', function(req, res, next) {
 
   Game.getGames(function(err,games){
     if(err)
-      throw err;
+      {res.send(404);return;}
 
     res.json(games);
   });
@@ -125,7 +125,7 @@ router.get('/games', function(req, res, next) {
 router.get('/games/:game_name', function(req, res, next) {
 
   Game.getGame(req.params.game_name, function(err, game){
-    if (err){throw err;}
+    if (err){res.send(404);return;}
 
     res.json(game);
   });
@@ -134,7 +134,10 @@ router.get('/games/:game_name', function(req, res, next) {
 
 router.get('/search/:search_line', function(req, res, next) {
 
+  if (req.params.search_line == null){res.send(404);return;}
+
   Game.getGamesByQuery(req.params.search_line, function(err, games){
+    if (err){res.send(404);return;}
     res.json(games);
   });
 
@@ -144,7 +147,7 @@ router.get('/articles', function(req, res, next) {
 
   Article.getArticles(function(err, articles){
     if(err)
-      throw err;
+      {res.send(404);return;}
 
     res.json(articles);
   });

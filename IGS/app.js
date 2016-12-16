@@ -13,7 +13,7 @@ var validator = require('validator');
 var csrf = require('csurf');
 var csrfProtection = csrf({cookie:true});
 //
-mongoose.connect('mongodb://igsuser_for_db:ybrnjybrjulf@ds133418.mlab.com:33418/igsdb_test');
+mongoose.connect('mongodb://localhost:27017/igs_db');
 
 
 var app = express();
@@ -83,6 +83,7 @@ var api = require('./routes/api');
 var image = require('./routes/image');
 var download = require('./routes/download');
 var new_game = require('./routes/new_game');
+var developer = require('./routes/developer');
 // var images = require('./routes/images');
 
 
@@ -114,7 +115,7 @@ app.use('/api', api);
 app.use('/image', image);
 app.use('/download', download);
 app.use('/new_game', new_game);
-// app.use('/images', images);
+app.use('/developer', developer);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -25,7 +25,8 @@ router.get('/*', csrf({ cookie: true }), function(req, res, next) {
             price: gameIn.price,
             name: gameIn.name,
             rating: gameIn.rating,
-            description: gameIn.description
+            description: gameIn.description,
+            developer_name: gameIn.developer_name
           }
           var allowReview = true;
           if ((res.locals.user != null) && (res.locals.user.user_type == 1)){

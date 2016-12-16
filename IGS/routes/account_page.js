@@ -10,7 +10,9 @@ router.get('/', ensureAuthenticated, function(req, res) {
 
   var account = {
     name: res.locals.user.name,
-    email: res.locals.user.email
+    email: res.locals.user.email,
+    description: res.locals.user.description,
+    user_type: res.locals.user.user_type
   };
 
   res.render('account_page', {account});
@@ -40,6 +42,10 @@ router.post('/', ensureAuthenticated, function(req, res){
           throw err;
 
         user.image = req.files.picture.data;
+
+        if (user.user_type == 2){
+          user.description = req.body.description;
+        }
 
         user.name = req.body.name;
         user.save(function(err){

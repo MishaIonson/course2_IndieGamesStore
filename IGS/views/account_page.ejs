@@ -40,7 +40,10 @@
         <img id='avatar' src="image/users/<%=account.email%>"></img><br>
         <input class='editview' type="file" name="picture" accept='image/png'><br>
         <input class='editview' name="name" type='text' placeholder="name" value='<%=account.name%>'><br>
-        <p class='description'><%=account.email%><p>
+        <p class='description'><%=account.email%></p>
+        <%if (account.user_type == 2){%>
+        <textarea class='editview'  name="description" cols="50" rows="10"><%=account.description%></textarea><br>
+        <%}%>
         <p class='description'>Enter password to confirm changes</p>
         <input class='editview' name="password" type='password' placeholder="password"><br>
         <input class='button' type='submit' value='SAVE'>
